@@ -1,3 +1,7 @@
+const Token = config.MY_TOKEN;
+const Device = config.MY_DEVICE_ID
+
+
 window.onSpotifyWebPlaybackSDKReady = () => {
     const token = config.MY_TOKEN;
     const player = new Spotify.Player({
@@ -51,3 +55,34 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     // Connect to the player!
     player.connect();
 };
+
+//new test
+const play = ({
+    spotify_uri,
+    playerInstance: {
+        _options: {
+            getOAuthToken,
+            id
+        }
+    }
+}) => {
+    getOAuthToken(access_token => {
+        fetch(`https://api.spotify.com/v1/me/player/play?device_id=${Device}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                uris: ['1fOIkbQO1zU1rO3GLIGJBH']
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${Token}`
+            },
+        });
+    });
+};
+
+play({
+    playerInstance: new Spotify.Player({
+        name: "New Dek"
+    }),
+    spotify_uri: 'spotify:track:1fOIkbQO1zU1rO3GLIGJBH',
+});
