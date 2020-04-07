@@ -1,7 +1,7 @@
 window.onSpotifyWebPlaybackSDKReady = () => {
     const token = config.MY_TOKEN;
     const player = new Spotify.Player({
-        name: 'Web Playback SDK Quick Start Player',
+        name: 'Dek STK quick play',
         getOAuthToken: cb => {
             cb(token);
         }
